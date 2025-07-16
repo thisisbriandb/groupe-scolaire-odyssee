@@ -82,7 +82,7 @@ export const metadata: Metadata = {
   viewport: 'width=device-width, initial-scale=1',
   themeColor: '#223F7B',
   alternates: {
-    canonical: 'https://www.lodyssee.ma'
+    canonical: 'https://www.gs-lodyssee.com'
   }
 };
 
