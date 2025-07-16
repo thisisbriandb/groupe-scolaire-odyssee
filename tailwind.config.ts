@@ -29,12 +29,17 @@ export default {
       animation: {
         'float': 'float 3s ease-in-out infinite',
         'pulse-slow': 'pulse 5s ease-in-out infinite',
+        'zoomSlow': 'zoomSlow 8s ease-in-out infinite alternate',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
-        }
+        },
+        zoomSlow: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.05)' },
+        },
       },
       backdropBlur: {
         xs: '2px',
@@ -43,4 +48,3 @@ export default {
   },
   plugins: [],
 } satisfies Config;
-

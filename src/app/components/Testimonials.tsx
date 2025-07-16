@@ -6,17 +6,17 @@ import Image from "next/image";
 const testimonials = [
   {
     id: 1,
-    name: "M. MAKAYA",
-    role: "Pere de Mickael",
-    company: "Élève en CM2",
+    name: "M. Paul IKONDO ELENGA",
+    role: "Père de Gabriel",
+    company: "Élève en Maternelle",
     image: "/assets/temoin1.jpg",
     content:
       "L'Odyssée a transformé l'expérience scolaire de mon fils. L'équipe pédagogique est très investie et les résultats sont au rendez-vous.",
   },
   {
     id: 2,
-    name: "Georges MAKOSSO",
-    role: "Pere de Sandra",
+    name: "Mme Astrid DANDY",
+    role: "Mère de Sandra",
     company: "Élève en 6ème",
     image: "/assets/temoin2.jpg",
     content:
@@ -24,8 +24,8 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Antoinette",
-    role: "Maman de Rayan",
+    name: "M. Georges MAKOSSO",
+    role: "Père d'Yvan",
     company: "Élève en Grande Section",
     image: "/assets/temoin3.jpg",
     content:

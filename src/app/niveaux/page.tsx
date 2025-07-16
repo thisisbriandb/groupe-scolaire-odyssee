@@ -47,7 +47,7 @@ const levels = [
   {
     id: 3,
     name: "Élémentaire",
-    image: "/assets/image3.jpg",
+    image: "/images/img elementaire.jpg",
     description: "Acquisition des savoirs de base et développement de l'autonomie de 6 à 11 ans",
     ageRange: "6 - 11 ans",
     features: [
@@ -66,7 +66,7 @@ const levels = [
   {
     id: 4,
     name: "Collège",
-    image: "/assets/image4.jpg",
+    image: "/images/logo college.jpg",
     description: "Approfondissement des connaissances et préparation au lycée de 11 à 15 ans",
     ageRange: "11 - 15 ans",
     features: [

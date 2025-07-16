@@ -13,7 +13,7 @@ const geistMono = Roboto_Condensed({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ecole-odyssee.ma"),
+  metadataBase: new URL("https://gs-odyssee.com"),
   title: {
     template: "%s | Groupe Scolaire L'Odyssée",
     default: "Groupe Scolaire L'Odyssée - De la crèche au collège",
@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     "activités périscolaires",
     "enseignement de qualité"
   ],
+  icons: {
+    icon: "/favicon.jpg",
+     },
   robots: {
     index: true,
     follow: true,

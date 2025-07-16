@@ -1,11 +1,23 @@
 'use client';
-
+import 'keen-slider/keen-slider.min.css';
+import { useKeenSlider } from 'keen-slider/react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const AboutPage = () => {
+const [sliderRef] = useKeenSlider<HTMLDivElement>({
+  loop: true,
+  renderMode: 'performance',
+  slides: { perView: 1 },
+  created(slider) {
+    setInterval(() => {
+      slider.next();
+    }, 5000); // Slide toutes les 5s
+  },
+});
+
   return (
     <>
       <Header />
@@ -80,7 +92,7 @@ const AboutPage = () => {
               >
                 <div className="relative h-[500px] rounded-lg overflow-hidden shadow-lg">
                   <Image
-                    src="/assets/school.jpg"
+                    src="/images/notre histoire.jpg"
                     alt="Vue de l'école"
                     fill
                     className="object-cover"
@@ -130,10 +142,107 @@ const AboutPage = () => {
           </div>
         </section>
 
-        {/* 🎯 Section Équipe */}
-{/* 🎯 Section Équipe - avec même tailles + dernière ligne centrée */}
+
+
+
+
+{/* 🌈 Section Activités immersive et structurée */}
+<section className="relative w-full bg-white py-20 overflow-hidden border-y-4 border-primary/20">
+  {/* Titre central */}
+  <div className="relative z-20 text-center mb-12">
+     <h2 className="text-4xl font-oswald font-bold mb-4">Nos Activités</h2>
+    <p className="text-lg text-gray-600 mt-2 font-work-sans">Des moments de créativité, de jeux et d’épanouissement</p>
+  </div>
+
+  {/* Dégradé doux flottant */}
+  <div className="absolute inset-0 z-10 bg-gradient-to-t from-pink-100/40 via-yellow-50/30 to-transparent pointer-events-none" />
+
+  {/* Bulles animées */}
+  <div className="absolute z-0 inset-0 pointer-events-none">
+    {[...Array(6)].map((_, i) => (
+      <div
+        key={i}
+        className={`absolute w-6 h-6 bg-pink-200 rounded-full opacity-50 animate-bubble`}
+        style={{
+          left: `${Math.random() * 100}%`,
+          bottom: `${Math.random() * 50}px`,
+          animationDelay: `${i * 1.5}s`,
+        }}
+      />
+    ))}
+  </div>
+
+  {/* Illustrations décoratives */}
+  <div className="absolute -top-4 -left-8 z-10 w-20 opacity-80 animate-float">
+    <Image src="/images/illustrations/ballon.jpg" alt="Ballon" width={60} height={60} />
+  </div>
+  <div className="absolute top-8 right-4 z-10 w-16 opacity-80 animate-float">
+    <Image src="/images/illustrations/etoile.jpg" alt="Étoile" width={48} height={48} />
+  </div>
+  <div className="absolute bottom-8 left-8 z-10 w-16 opacity-80 animate-float">
+    <Image src="/images/illustrations/livre.jpg" alt="Livre" width={48} height={48} />
+  </div>
+  <div className="absolute bottom-4 right-8 z-10 w-14 opacity-80 animate-float">
+    <Image src="/images/illustrations/crayon.jpg" alt="Crayon" width={40} height={40} />
+  </div>
+
+  {/* Slider centré avec largeur réduite */}
+  <div className="relative z-20 mx-auto w-full max-w-8xl h-[100vh]">
+    <div ref={sliderRef} className="keen-slider h-full w-full relative overflow-hidden shadow-lg">
+      {[
+        '/images/activite1.jpg',
+        '/images/activite2.jpg',
+        '/images/activite3.jpg',
+        '/images/activite4.jpg',
+        '/images/activite5.jpg',
+        '/images/activite6.jpg',
+        '/images/activite7.jpg',
+        '/images/activite8.jpg',
+        '/images/activite9.jpg',
+        '/images/activite10.jpg',
+        '/images/activite11.jpg',
+        '/images/activite12.jpg',
+        '/images/activite13.jpg',
+        '/images/activite14.jpg',
+        '/images/activite15.jpg',
+        '/images/activite16.jpg',
+        '/images/activite17.jpg',
+        '/images/activite18.jpg',
+        
+        
+      ].map((src, idx) => (
+        <div
+          key={idx}
+          className="keen-slider__slide relative w-full h-full transition-opacity duration-1000 ease-in-out"
+        >
+          <div className="absolute inset-0 animate-zoomSlow">
+            <Image
+              src={src}
+              alt={`Activité ${idx + 1}`}
+              fill
+              className="object-cover object-center brightness-95 blur-[1px]"
+              priority={idx === 0}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+        {/* 🎯 Section Équipe (corrigée avec visages bien cadrés dans un cercle) */}
 <section className="py-24 relative overflow-hidden bg-gradient-to-br from-white via-blue-50 to-white">
-  {/* Animation de fond doux */}
   <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 via-transparent to-red-100/30 animate-pulse-slow z-0" />
 
   <div className="relative z-10 container mx-auto px-4">
@@ -149,44 +258,48 @@ const AboutPage = () => {
       </p>
     </motion.div>
 
-    {/* Grille globale */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 max-w-6xl mx-auto">
-      {/* Première ligne : 3 membres */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-14 max-w-4xl mx-auto">
       {[
         {
-          name: 'Mme Sophie Durand',
+          name: 'Zita Ekouya Ngala Bertille',
           role: 'Directrice Générale',
           quote: 'Accompagner chaque élève vers l’excellence.',
-          img: '/images/DG.png',
+          img: '/images/Directrice generale.jpg',
         },
         {
-          name: 'M. Alain Morel',
-          role: 'Directeur Pédagogique',
+          name: 'Dellau Nathalie',
+          role: 'Directrice Adjointe et chargée de la pédagogie',
           quote: 'Un cadre exigeant et bienveillant.',
-          img: '/images/DP.png',
+          img: '/images/Directrice Adjoint.jpg',
         },
         {
-          name: 'Mme Nadia El Idrissi',
-          role: 'Responsable Administrative',
+          name: 'Reine Bikoumou',
+          role: 'Secrétaire et chargée de la communication',
           quote: 'L’accueil et l’écoute avant tout.',
-          img: '/images/DA.png',
+          img: '/images/secretaire.jpg',
+        },
+        {
+          name: 'Mouanda Crépin',
+          role: 'Chargé de la pédagogie, des examens et concours, responsable du club de théâtre.',
+          quote: 'L’éveil en douceur.',
+          img: '/images/charge pedagogique.jpg',
         },
       ].map((member, idx) => (
         <motion.div
           key={idx}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: idx * 0.15, duration: 0.6, ease: 'easeOut' }}
+          transition={{ delay: idx * 0.15, duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 group relative"
+          className="text-center bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 group"
         >
           <div className="relative w-44 h-44 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
             <Image
               src={member.img}
               alt={member.name}
-              width={180}
-              height={180}
-              className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+              width={176}
+              height={176}
+              className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-500"
             />
           </div>
           <h3 className="text-lg font-bold font-oswald text-black">{member.name}</h3>
@@ -194,52 +307,9 @@ const AboutPage = () => {
           <p className="text-sm italic text-gray-500 mt-1 font-work-sans">"{member.quote}"</p>
         </motion.div>
       ))}
-
-      {/* Dernière ligne centrée */}
-      <div className="col-span-1 sm:col-span-2 lg:col-span-3 flex justify-center gap-14">
-        {[
-          {
-            name: 'Mme Claire Bouchard',
-            role: 'Responsable Financière',
-            quote: 'L’éveil en douceur.',
-            img: '/images/RF.png',
-          },
-          {
-            name: 'M. Karim Meziane',
-            role: 'Responsable Des Activités Scolaires',
-            quote: 'Former des esprits curieux et libres.',
-            img: '/images/RAS.png',
-          },
-        ].map((member, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 + idx * 0.2, duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 group relative w-full max-w-sm"
-          >
-            <div className="relative w-44 h-44 mx-auto mb-6 rounded-full overflow-hidden shadow-md">
-              <Image
-                src={member.img}
-                alt={member.name}
-                width={180}
-                height={180}
-                className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-            <h3 className="text-lg font-bold font-oswald text-black">{member.name}</h3>
-            <p className="text-sm font-work-sans text-indigo-700 mt-1">{member.role}</p>
-            <p className="text-sm italic text-gray-500 mt-1 font-work-sans">"{member.quote}"</p>
-          </motion.div>
-        ))}
-      </div>
     </div>
   </div>
 </section>
-
-
-
 
       </main>
       <Footer />

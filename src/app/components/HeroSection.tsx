@@ -4,35 +4,23 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
-import { FaDownload } from "react-icons/fa";
-import "swiper/css";
-import "swiper/css/autoplay";
 
 const backgrounds = [
   {
-    url: "/assets/bg1.png",
     title: "Excellence Acamdemique",
     subtitle: "Inscrivez vos enfants dans les ...",
-    priority: true,
   },
   {
-    url: "/assets/bg2.png",
     title: "Un Avenir garanti",
     subtitle: "La meilleure école au Congo",
-    priority: false,
   },
   {
-    url: "/assets/bg3.png",
     title: "Un Avenir garanti",
     subtitle: "La meilleure école au Congo",
-    priority: false,
   },
 ];
 
 const HeroSection = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -40,49 +28,28 @@ const HeroSection = () => {
       className="relative h-screen w-full overflow-hidden"
       aria-label="Bannière principale"
     >
-      <div className="absolute inset-0">
-        <Swiper
-          modules={[Autoplay, EffectFade]}
-          effect="fade"
-          speed={1000}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          loop={true}
-          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-          className="h-full w-full"
-        >
-          {backgrounds.map((bg, index) => (
-            <SwiperSlide key={bg.url} className="relative">
-              <Image
-                src={bg.url}
-                alt={`${bg.title} - ${bg.subtitle}`}
-                fill
-                className={`object-cover transition-transform duration-8000 ${
-                  activeIndex === index ? "scale-up" : "scale-100"
-                }`}
-                priority={bg.priority}
-                quality={90}
-                onLoad={() => setIsLoading(false)}
-                sizes="100vw"
-                loading={bg.priority ? "eager" : "lazy"}
-              />
-              <div
-                className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40"
-                aria-hidden="true"
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      {/* VIDEO BACKGROUND */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/videos/hero-video.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        Sorry, your browser doesn't support embedded videos.
+      </video>
 
+      {/* Overlay sombre plus léger pour clarté */}
+      <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
+
+      {/* CONTENU TEXTUEL */}
       <div className="relative h-full z-20">
         <div className="h-full flex items-center">
           <div className="container">
             <div className="max-w-4xl">
               <motion.span
-                initial={{ y: 30, opacity: 0 }}
+                initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 className="inline-block text-blue-600 font-semibold text-lg md:text-xl mb-4 bg-white/90 px-5 py-1.5 rounded-full shadow-sm"
               >
@@ -129,7 +96,6 @@ const HeroSection = () => {
                     className="bg-gradient-to-r from-[#19559D] to-[#3BA65E] text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-xl transition inline-flex items-center justify-center"
                   >
                     <span>Télécharger le catalogue</span>
-                    <FaDownload className="h-5 w-5 ml-2" />
                   </motion.button>
                 </Link>
                 <Link href="/contact" aria-label="Accéder au formulaire de demande de devis">
@@ -156,7 +122,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Indicateurs de slide */}
+        {/* Indicateurs de slide (optionnel si tu ne changes plus les slides) */}
         <div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2"
           role="tablist"
