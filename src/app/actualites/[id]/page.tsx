@@ -1,24 +1,23 @@
 import { Metadata } from 'next';
-import { getNews, News } from '@/app/api/news/[id]/route';
+import { getNews } from '@/app/api/news/[id]/route';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import Image from 'next/image';
 import { FiCalendar, FiUser, FiShare2 } from 'react-icons/fi';
-import Script from 'next/script';
 
-interface Props {
-  params: {
-    id: string;
-  };
+interface NewsPageProps {
+  params: { id: string };
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: NewsPageProps
+): Promise<Metadata> {
   const news = await getNews(params.id);
 
   if (!news) {
     return {
-      title: 'Actualité non trouvée | Groupe Scolaire L\'Odyssée',
-      description: 'Cette actualité n\'existe pas ou a été supprimée.',
+      title: "Actualité non trouvée | Groupe Scolaire L'Odyssée",
+      description: "Cette actualité n'existe pas ou a été supprimée.",
     };
   }
 
@@ -31,15 +30,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [news.image],
       type: 'article',
       locale: 'fr_FR',
-      siteName: 'Groupe Scolaire L\'Odyssée',
+      siteName: "Groupe Scolaire L'Odyssée",
     },
     robots: {
       index: true,
       follow: true,
     },
     alternates: {
-      canonical: `https://www.lodyssee.ma/actualites/${params.id}`
-    }
+      canonical: `https://www.lodyssee.ma/actualites/${params.id}`,
+    },
   };
 }
 
@@ -69,7 +68,7 @@ const getCategoryLabel = (category: string) => {
   }
 };
 
-export default async function NewsDetailPage({ params }: Props) {
+export default async function NewsDetailPage({ params }: NewsPageProps) {
   const news = await getNews(params.id);
 
   if (!news) {
@@ -99,10 +98,11 @@ export default async function NewsDetailPage({ params }: Props) {
       <Header />
       <article className="py-20">
         <div className="container mx-auto px-4">
-          {/* En-tête de l'article */}
           <div className="max-w-4xl mx-auto mb-12">
             <div className="flex items-center gap-4 mb-6">
-              <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getCategoryColor(news.category)}`}>
+              <span
+                className={`px-3 py-1 rounded-full text-sm font-semibold ${getCategoryColor(news.category)}`}
+              >
                 {getCategoryLabel(news.category)}
               </span>
               <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -111,7 +111,7 @@ export default async function NewsDetailPage({ params }: Props) {
                   {new Date(news.date).toLocaleDateString('fr-FR', {
                     day: 'numeric',
                     month: 'long',
-                    year: 'numeric'
+                    year: 'numeric',
                   })}
                 </time>
               </div>
@@ -126,7 +126,6 @@ export default async function NewsDetailPage({ params }: Props) {
             </h1>
           </div>
 
-          {/* Image principale */}
           <div className="max-w-4xl mx-auto mb-12 relative aspect-video rounded-xl overflow-hidden">
             <Image
               src={news.image}
@@ -137,7 +136,6 @@ export default async function NewsDetailPage({ params }: Props) {
             />
           </div>
 
-          {/* Contenu */}
           <div className="max-w-4xl mx-auto">
             <div className="prose prose-lg max-w-none mb-12">
               {news.content.split('\n').map((paragraph, index) => (
@@ -147,7 +145,6 @@ export default async function NewsDetailPage({ params }: Props) {
               ))}
             </div>
 
-            {/* Boutons de partage */}
             <div className="border-t pt-8">
               <div className="flex items-center gap-4">
                 <span className="font-semibold text-gray-700 flex items-center gap-2">
@@ -155,7 +152,9 @@ export default async function NewsDetailPage({ params }: Props) {
                   Partager
                 </span>
                 <a
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                    shareUrl
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-700 transition-colors"
@@ -163,7 +162,9 @@ export default async function NewsDetailPage({ params }: Props) {
                   Facebook
                 </a>
                 <a
-                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`}
+                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                    shareUrl
+                  )}&text=${encodeURIComponent(shareText)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sky-500 hover:text-sky-600 transition-colors"
@@ -171,7 +172,9 @@ export default async function NewsDetailPage({ params }: Props) {
                   Twitter
                 </a>
                 <a
-                  href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareText)}`}
+                  href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+                    shareUrl
+                  )}&title=${encodeURIComponent(shareText)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-800 hover:text-blue-900 transition-colors"

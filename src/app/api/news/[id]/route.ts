@@ -62,11 +62,11 @@ export async function GET(
 // PUT - Mettre à jour une actualité
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
     const body = await request.json();
-    const { id } = await params;
+    const { id } = params;
 
     const newsRef = doc(db, 'news', id);
     const updateData = {
@@ -97,10 +97,10 @@ export async function PUT(
 // DELETE - Supprimer une actualité
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id:string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     const newsRef = doc(db, 'news', id);
     await deleteDoc(newsRef);
 
@@ -112,4 +112,4 @@ export async function DELETE(
       { status: 500 }
     );
   }
-} 
+}
