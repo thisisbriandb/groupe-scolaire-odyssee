@@ -85,7 +85,7 @@ const HeroSection = () => {
                 className="flex flex-col sm:flex-row gap-4 mt-10"
               >
                 <Link
-                  href="/assets/JACK PLAQUETTE.pdf"
+                  href="/assets/Catalogue fiche.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Télécharger notre catalogue au format PDF"

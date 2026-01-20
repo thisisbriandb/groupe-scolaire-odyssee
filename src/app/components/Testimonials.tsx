@@ -24,12 +24,12 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "M. Georges MAKOSSO",
-    role: "Père d'Yvan",
+    name: "M. BOUEYA",
+    role: "Père de Maria et Thabita",
     company: "Élève en Grande Section",
-    image: "/assets/temoin3.jpg",
+    image: "/assets/Mr Boueya.jpeg",
     content:
-      "Mon enfant s'épanouit vraiment dans cette école. L'approche pédagogique est moderne et bienveillante.",
+      "Nous sommes satisfait du système éducatif de L'odyssée dans la mesure où nous voyons de bons fruits chez Nos enfants.",
   },
 ];
 

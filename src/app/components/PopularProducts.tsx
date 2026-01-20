@@ -13,7 +13,7 @@ const levels = [
   {
     id: 1,
     name: "Crèche",
-    image: "/assets/bg1.png",
+    image: "/images/Odyssee creche.jpeg",
     description:
       "Accueil des tout-petits de 3 mois à 3 ans dans un environnement bienveillant et sécurisé",
   },
@@ -27,14 +27,14 @@ const levels = [
   {
     id: 3,
     name: "Élémentaire",
-    image: "/images/img elementaire.jpg",
+    image: "/images/Groupe scolaire Odyssee.jpeg",
     description:
       "Acquisition des savoirs de base et développement de l'autonomie de 6 à 11 ans",
   },
   {
     id: 4,
     name: "Collège",
-    image: "/images/logo college.jpg",
+    image: "/images/College Jules-verne.jpeg",
     description:
       "Approfondissement des connaissances et préparation au lycée de 11 à 15 ans",
   },
